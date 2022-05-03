@@ -65,57 +65,21 @@ const GameField = ({}: GameFieldProps) => {
         <Button title="Resetar" onPress={() => setGameButtonState({})} />
       </View>
       <View style={{ flex: 1, flexDirection: "row" }}>
-        <View>
-          <GameButton
-            playerSelected={gameButtonState[0]}
-            forceDisable={!!winner}
-            onPress={() => handlePress(0)}
-          />
-          <GameButton
-            playerSelected={gameButtonState[1]}
-            onPress={() => handlePress(1)}
-            forceDisable={!!winner}
-          />
-          <GameButton
-            playerSelected={gameButtonState[2]}
-            onPress={() => handlePress(2)}
-            forceDisable={!!winner}
-          />
-        </View>
-        <View>
-          <GameButton
-            playerSelected={gameButtonState[3]}
-            onPress={() => handlePress(3)}
-            forceDisable={!!winner}
-          />
-          <GameButton
-            playerSelected={gameButtonState[4]}
-            onPress={() => handlePress(4)}
-            forceDisable={!!winner}
-          />
-          <GameButton
-            playerSelected={gameButtonState[5]}
-            onPress={() => handlePress(5)}
-            forceDisable={!!winner}
-          />
-        </View>
-        <View>
-          <GameButton
-            playerSelected={gameButtonState[6]}
-            onPress={() => handlePress(6)}
-            forceDisable={!!winner}
-          />
-          <GameButton
-            playerSelected={gameButtonState[7]}
-            onPress={() => handlePress(7)}
-            forceDisable={!!winner}
-          />
-          <GameButton
-            playerSelected={gameButtonState[8]}
-            onPress={() => handlePress(8)}
-            forceDisable={!!winner}
-          />
-        </View>
+        {new Array(3).fill(0).map((_, line) => (
+          <View key={`line${line}`}>
+            {new Array(3).fill(0).map((_, column) => {
+              let buttonId = line * 3 + column;
+              return (
+                <GameButton
+                  key={`column${column}`}
+                  playerSelected={gameButtonState[buttonId]}
+                  forceDisable={!!winner}
+                  onPress={() => handlePress(buttonId)}
+                />
+              );
+            })}
+          </View>
+        ))}
       </View>
     </View>
   );
