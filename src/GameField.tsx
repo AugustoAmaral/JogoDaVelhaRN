@@ -10,20 +10,6 @@ interface ButtonMatrix {
 
 const checkWinner = (gameButtonState: ButtonMatrix): "X" | "O" | undefined => {
   const gbs = gameButtonState;
-  /*
-    Vertical:
-    0,1,2
-    3,4,5
-    6,7,8
-    Horizontal:
-    0,3,6
-    1,4,7
-    2,5,8
-    Vertical:
-    0,4,8
-    2,4,6
-    */
-
   // Horizontal
   if (gbs[0] === gbs[1] && gbs[0] === gbs[2]) return gbs[0];
   if (gbs[3] === gbs[4] && gbs[3] === gbs[5]) return gbs[3];
